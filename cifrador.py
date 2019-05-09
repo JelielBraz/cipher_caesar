@@ -52,9 +52,10 @@ def main():
     criptografia = hashlib.sha1(str(palavra).encode('utf-8'))
     jazao['resumo_criptografico'] = criptografia.hexdigest()
     write_in_file(jazao)
-    requests.post('https://api.codenation.dev/v1/challenge/dev-ps/submit-solution?token=e95082 '
-                  'eeb8f8ee218cea54184e5f0a2a1c2af66b', )
-
+    file = open('answer.json', 'rb')
+    r = requests.post('https://api.codenation.dev/v1/challenge/dev-ps/submit-solution?token'
+                      '=e95082eeb8f8ee218cea54184e5f0a2a1c2af66b', files={'answer': file})
+    print(r.status_code)
 
 
 if __name__ == '__main__':
